@@ -12,6 +12,8 @@ import { BLOG_TITLE } from '@/constants'
 
 import MotionPreferences from '@/components/MotionPreferences'
 
+import { cookies } from 'next/headers'
+
 const mainFont = Work_Sans({
   subsets: ['latin'],
   display: 'fallback',
@@ -32,7 +34,8 @@ export const metadata = {
 
 function RootLayout({ children }) {
   // TODO: Dynamic theme depending on user preference
-  const theme = 'light'
+  const savedTheme = cookies().get('color-theme')
+  const theme = savedTheme?.value || 'light'
 
   return (
     <MotionPreferences>
@@ -43,7 +46,7 @@ function RootLayout({ children }) {
         style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
       >
         <body>
-          <Header theme={theme} />
+          <Header initialTheme={theme} />
           <main>{children}</main>
           <Footer />
         </body>
