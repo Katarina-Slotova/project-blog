@@ -10,6 +10,8 @@ import './styles.css'
 
 import { BLOG_TITLE } from '@/constants'
 
+import MotionPreferences from '@/components/MotionPreferences'
+
 const mainFont = Work_Sans({
   subsets: ['latin'],
   display: 'fallback',
@@ -33,18 +35,20 @@ function RootLayout({ children }) {
   const theme = 'light'
 
   return (
-    <html
-      lang='en'
-      className={clsx(mainFont.variable, monoFont.variable)}
-      data-color-theme={theme}
-      style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
-    >
-      <body>
-        <Header theme={theme} />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <MotionPreferences>
+      <html
+        lang='en'
+        className={clsx(mainFont.variable, monoFont.variable)}
+        data-color-theme={theme}
+        style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
+      >
+        <body>
+          <Header theme={theme} />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </MotionPreferences>
   )
 }
 
