@@ -14,6 +14,8 @@ import CodeSnippet from '@/components/CodeSnippet'
 
 import DivisionGroupsDemo from '@/components/DivisionGroupsDemo'
 
+import CircularColorsDemo from '@/components/CircularColorsDemo'
+
 export async function generateMetadata({ params }) {
   const { frontmatter } = await loadBlogPost(params.postSlug)
   return {
@@ -33,7 +35,7 @@ async function BlogPost({ params }) {
       <div className={styles.page}>
         <MDXRemote
           source={content}
-          components={{ pre: CodeSnippet, DivisionGroupsDemo }}
+          components={{ pre: CodeSnippet, DivisionGroupsDemo, CircularColorsDemo }}
         />
       </div>
     </article>
